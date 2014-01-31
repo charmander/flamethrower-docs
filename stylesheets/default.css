@@ -2,15 +2,10 @@ main, nav {
 	display: block;
 }
 
-html {
-	height: 100%;
-}
-
 body {
-	display: flex;
 	font-family: PT Sans, sans-serif;
-	height: 100%;
 	margin: 0;
+	padding-left: 16.5em;
 }
 
 ::-moz-selection {
@@ -20,8 +15,12 @@ body {
 
 #header {
 	background-color: #eee;
+	bottom: 0;
+	left: 0;
 	overflow: auto;
 	padding: 1em;
+	position: fixed;
+	top: 0;
 }
 
 #title {
@@ -188,7 +187,11 @@ body {
 
 @media (max-width: 40em) {
 	body {
-		display: block;
+		padding-left: 0;
+	}
+
+	#header {
+		position: static;
 	}
 
 	#title {
