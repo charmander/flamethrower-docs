@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Flamethrower · A template engine for HTML</title>
+
+		<link rel="stylesheet" type="text/css" href="stylesheets/default.css">
+	</head>
+	<body>
+		<header id="header">
+			<h1 id="title">Flamethrower</h1>
+
+			<nav id="navigation">
+				<ul>
+					<li><a href="#">About</a></li>
+					<li>
+						<a href="#syntax">Syntax</a>
+
+						<ul>
+							<li><a href="#elements">Elements</a></li>
+							<li><a href="#strings">Strings</a></li>
+							<li><a href="#attributes">Attributes</a></li>
+							<li><a href="#classes">Classes</a></li>
+							<li><a href="#hierarchy">Hierarchy</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#api">API</a>
+
+						<ul>
+							<li><a href="#flamethrower-quasiquoter"><code>flamethrower</code></a></li>
+							<li><a href="#flamef-quasiquoter"><code>flamef</code></a></li>
+						</ul>
+					</li>
+					<li><a href="#changelog">Changelog</a></li>
+					<li><a href="https://github.com/charmander/flamethrower">Source</a></li>
+					<li><a href="https://github.com/charmander/flamethrower/issues">Issues</a></li>
+					<li><a href="/razorleaf/">Razor Leaf</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<h2>About</h2>
+
+			<p><strong>Flamethrower</strong> is a simple HTML template engine for Haskell.</p>
+
+			<pre>cabal install <a href="https://hackage.haskell.org/package/flamethrower" title="Flamethrower on Hackage">flamethrower</a></pre>
+
+			<h2 id="syntax">Syntax</h2>
+
+			<h3 id="elements">Elements</h3>
+
+			<p>A lone identifier, consisting of any numbers of letters, numbers, or hyphens, defines an element.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>p</code></pre>
+
+				<pre class="output"><samp>&lt;p&gt;&lt;/p&gt;</samp></pre>
+			</div>
+
+			<p>Current HTML5 void tags are recognized automatically:</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>link</code></pre>
+
+				<pre class="output"><samp>&lt;link&gt;</samp></pre>
+			</div>
+
+			<h3 id="strings">Strings</h3>
+
+			<p>Strings are surrounded by double quotes. Interpolated code sections are delimited by <code>#{</code> and <code>}</code>.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>"Congratulations; you’re visitor ##{show visitorCount}! You have won a prize."</code></pre>
+
+				<pre class="output"><samp>Congratulations; you’re visitor #20! You have won a prize.</samp></pre>
+			</div>
+
+			<p>Text, both inside and outside of interpolated sections, is escaped as appropriate depending on context. To turn this off, add an exclamation mark as a prefix:</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>"&lt;p id=\"user-content\"&gt;#{markdown input}&lt;/p&gt;\n"
+!"&lt;p id=\"user-content\"&gt;#{markdown input}&lt;/p&gt;"</code></pre>
+
+				<pre class="output"><samp>&amp;lt;p id="user-content"&amp;gt;&amp;lt;em&amp;gt;Hello, world!&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;
+&lt;p id="user-content"&gt;&lt;em&gt;Hello, world!&lt;/em&gt;&lt;/p&gt;</samp></pre>
+			</div>
+
+			<p>Backslash escape codes are the same as those supported in Haskell, with the addition of <code>\#</code> to escape interpolation.</p>
+
+			<h3 id="attributes">Attributes</h3>
+
+			<p>Identifiers followed by colons are treated as attribute names. A string following an attribute name is treated as its value; attribute values cannot be raw (unescaped) strings.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>header id: "example"</code></pre>
+
+				<pre class="output"><samp>&lt;header id="example"&gt;&lt;/header&gt;</samp></pre>
+			</div>
+
+			<h3 id="classes">Classes</h3>
+
+			<p>A leading period makes an identifier a class.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>div.do .not .mix.spaces.like.this</code></pre>
+
+				<pre class="output"><samp>&lt;div class="do not mix spaces like this"&gt;</samp></pre>
+			</div>
+
+			<h3 id="hierarchy">Hierarchy</h3>
+
+			<p>Hierarchy in Flamethrower is currently entirely whitespace-based. Anything after or inside an element (after it on the same line or inside an indented block beneath it) is considered its child.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>!"&lt;!DOCTYPE html&gt;"
+
+html
+	head
+		meta charset: "utf-8"
+
+		title "Example Page"
+
+		link
+			rel: "stylesheet"
+			type: "text/css"
+			href: "/stylesheets/default.css"
+
+	body
+		p id: "welcome" "Hello, "
+			em "world"
+			"!"
+
+		a "Visit a most exciting destination"
+			href: "http://example.com/"</code></pre>
+
+				<pre class="output"><samp>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Example Page&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p id="welcome"&gt;Hello, &lt;em&gt;world&lt;/em&gt;!&lt;/p&gt;&lt;a href="http://example.com/"&gt;Visit a most exciting destination&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</samp></pre>
+			</div>
+
+			<h2 id="api">API</h2>
+
+			<h3 id="flamethrower-quasiquoter"><code>Flamethrower.flamethrower :: QuasiQuoter</code></h3>
+
+			<p>A quasiquoter for Flamethrower templates. Usable in expression context.</p>
+
+			<pre data-language="Haskell"><code>hello name = [flamethrower|p "Hello, #{name}."|]</code></pre>
+
+			<h3 id="flamef-quasiquoter"><code>Flamethrower.flamef :: QuasiQuoter</code></h3>
+
+			<p>A quasiquoter for Flamethrower template files. Usable in expression context.</p>
+
+			<pre data-language="Haskell"><code>hello name = [flamef|hello.flame|]</code></pre>
+
+			<h2 id="changelog">Changelog</h2>
+
+			<h3>0.0.1.3</h3>
+
+			<p>A basic indentation-based-template-to-HTML compiler, with support for interpolation. No special blocks have been implemented. Errors don’t point to a specific origin.</p>
+		</main>
+	</body>
+</html>

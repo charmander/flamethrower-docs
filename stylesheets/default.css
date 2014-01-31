@@ -1,0 +1,227 @@
+main, nav {
+	display: block;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	font-family: PT Sans, sans-serif;
+	height: 100%;
+	margin: 0;
+}
+
+::-moz-selection {
+	background-color: #0c9;
+	color: white;
+}
+
+#header {
+	background-color: #eee;
+	overflow: auto;
+	padding: 1em;
+}
+
+#title {
+	font-family: Open Sans;
+	font-weight: 100;
+	margin: 0.4em 0;
+	padding-left: 1.1em;
+	position: relative;
+	text-transform: lowercase;
+}
+
+#title::before {
+	background-color: #c00;
+	background-image: radial-gradient(at 100% 100%, red, #f90);
+	border-radius: 2.2em;
+	border-bottom-right-radius: 1em;
+	border-top-left-radius: 0;
+	content: "";
+	height: 1em;
+	left: 0;
+	position: absolute;
+	top: 0.1em;
+	-webkit-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	width: 1em;
+}
+
+/*/
+#title::after {
+	background-color: white;
+	border-radius: 4em;
+	border-bottom-right-radius: 1em;
+	border-top-left-radius: 0;
+	content: "";
+	height: 0.5em;
+	left: 0.25em;
+	position: absolute;
+	top: 0.6em;
+	transform: rotate(45deg);
+	width: 0.5em;
+}
+
+/*/
+#title::after {
+	background-color: white;
+	border-radius: 4em;
+	border-bottom-right-radius: 1em;
+	border-top-left-radius: 0;
+	content: "";
+	height: 0.5em;
+	left: 0.25em;
+	position: absolute;
+	top: 0.6em;
+	-webkit-transform: scaleX(-1) rotate(45deg);
+	    -ms-transform: scaleX(-1) rotate(45deg);
+	        transform: scaleX(-1) rotate(45deg);
+	width: 0.4em;
+}
+/**/
+
+#navigation ul {
+	list-style-type: none;
+	margin: 0;
+	margin-left: 2.2em;
+	padding: 0;
+}
+
+#navigation ul ul {
+	margin-left: 1em;
+}
+
+#navigation > ul > li + li {
+	margin-top: 0.4em;
+}
+
+#navigation a {
+	color: #057;
+	display: block;
+	line-height: 1.6;
+	text-decoration: none;
+}
+
+#navigation code {
+	font-family: DejaVu Sans Mono, Droid Sans Mono, Liberation Mono, monospace;
+	font-size: 0.9em;
+}
+
+#main {
+	flex: 1;
+	overflow: auto;
+	padding: 0.9em 5%;
+}
+
+#main h2, #main h3 {
+	font-weight: 300;
+	margin: 0;
+	padding-top: 1em;
+}
+
+#main h3 code {
+	font-size: 1rem;
+}
+
+#main p {
+	line-height: 1.6;
+}
+
+#main a {
+	color: #06f;
+}
+
+#main pre {
+	background-color: #eee;
+	border: 0.1em solid #ddd;
+	padding: 0.8em;
+	position: relative;
+	-moz-tab-size: 4;
+	     tab-size: 4;
+	word-break: break-all;
+	/*word-wrap: hyphenate; /* TODO: Correct? Implemented? */
+	white-space: pre-wrap;
+}
+
+#main pre[data-language]::before {
+	color: #ccc;
+	content: attr(data-language);
+	font-family: DejaVu Sans, sans-serif;
+	font-size: 0.8em;
+	pointer-events: none;
+	position: absolute;
+	right: 0.6em;
+	text-transform: uppercase;
+	top: 0.6em;
+}
+
+#main pre code, #main pre samp {
+	position: relative;
+}
+
+#main .code-sample {
+	margin: 1em 0;
+}
+
+#main .code-sample pre {
+	margin: 0;
+}
+
+#main .code-sample pre + pre {
+	border-top: none;
+}
+
+#main .code-sample .output::before {
+	color: #ccc;
+	content: 'result';
+	font-family: DejaVu Sans, sans-serif;
+	font-size: 0.8em;
+	pointer-events: none;
+	position: absolute;
+	right: 0.6em;
+	text-transform: uppercase;
+	top: 0.6em;
+}
+
+@media (max-width: 40em) {
+	body {
+		display: block;
+	}
+
+	#title {
+		padding-left: 1.3em;
+	}
+
+	#navigation ul {
+		margin-left: 2.7em;
+	}
+
+	#navigation > ul > li > a {
+		display: inline-block;
+		margin-right: 0.5em;
+	}
+
+	#navigation ul ul {
+		display: inline;
+		margin-left: 0;
+	}
+
+	#navigation ul ul::before {
+		color: #666;
+		content: "[";
+	}
+
+	#navigation ul ul::after {
+		color: #666;
+		content: "]";
+		margin-left: 0.4em;
+	}
+
+	#navigation ul ul li {
+		display: inline-block;
+		margin-left: 0.4em;
+	}
+}
