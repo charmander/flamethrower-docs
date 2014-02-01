@@ -38,6 +38,7 @@ body {
 	border-radius: 2.2em;
 	border-bottom-right-radius: 1em;
 	border-top-left-radius: 0;
+	box-shadow: -0.05em -0.05em 0 yellow;
 	content: "";
 	height: 1em;
 	left: 0;
