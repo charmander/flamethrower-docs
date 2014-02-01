@@ -1,3 +1,21 @@
+@font-face {
+	src: url("../fonts/PT_Sans-Web-Regular.woff") format("woff");
+	font-family: PT Sans;
+	font-weight: normal;
+}
+
+@font-face {
+	src: url("../fonts/PT_Sans-Web-Bold.woff") format("woff");
+	font-family: PT Sans;
+	font-weight: bold;
+}
+
+@font-face {
+	src: url("../fonts/OpenSans-Light.woff") format("woff");
+	font-family: Open Sans;
+	font-weight: 100;
+}
+
 main, nav {
 	display: block;
 }
