@@ -23,7 +23,6 @@ main, nav {
 body {
 	font-family: PT Sans, sans-serif;
 	margin: 0;
-	padding-left: 16.5em;
 }
 
 ::-moz-selection {
@@ -37,7 +36,6 @@ body {
 	left: 0;
 	overflow: auto;
 	padding: 1em;
-	position: fixed;
 	top: 0;
 }
 
@@ -45,7 +43,7 @@ body {
 	font-family: Open Sans;
 	font-weight: 100;
 	margin: 0.4em 0;
-	padding-left: 1.1em;
+	padding-left: 1.3em;
 	position: relative;
 	text-transform: lowercase;
 }
@@ -68,22 +66,6 @@ body {
 	width: 1em;
 }
 
-/*/
-#title::after {
-	background-color: white;
-	border-radius: 4em;
-	border-bottom-right-radius: 1em;
-	border-top-left-radius: 0;
-	content: "";
-	height: 0.5em;
-	left: 0.25em;
-	position: absolute;
-	top: 0.6em;
-	transform: rotate(45deg);
-	width: 0.5em;
-}
-
-/*/
 #title::after {
 	background-color: white;
 	border-radius: 4em;
@@ -99,21 +81,42 @@ body {
 	        transform: scaleX(-1) rotate(45deg);
 	width: 0.4em;
 }
-/**/
 
 #navigation ul {
 	list-style-type: none;
 	margin: 0;
-	margin-left: 2.2em;
+	margin-left: 2.7em;
 	padding: 0;
 }
 
 #navigation ul ul {
-	margin-left: 1em;
+	display: inline;
+	margin-left: 0;
+}
+
+#navigation ul ul::before {
+	color: #666;
+	content: "[";
+}
+
+#navigation ul ul::after {
+	color: #666;
+	content: "]";
+	margin-left: 0.4em;
+}
+
+#navigation ul ul li {
+	display: inline-block;
+	margin-left: 0.4em;
 }
 
 #navigation > ul > li + li {
 	margin-top: 0.4em;
+}
+
+#navigation > ul > li > a {
+	display: inline-block;
+	margin-right: 0.5em;
 }
 
 #navigation a {
@@ -126,6 +129,47 @@ body {
 #navigation code {
 	font-family: DejaVu Sans Mono, Droid Sans Mono, Liberation Mono, monospace;
 	font-size: 0.9em;
+}
+
+@media (min-width: 40em) {
+	body {
+		padding-left: 16.5em;
+	}
+
+	#header {
+		position: fixed;
+	}
+
+	#title {
+		padding-left: 1.1em;
+	}
+
+	#navigation ul {
+		margin-left: 2.2em;
+	}
+
+	#navigation > ul > li > a {
+		display: block;
+		margin-right: 0;
+	}
+
+	#navigation ul ul {
+		display: block;
+		margin-left: 1em;
+	}
+
+	#navigation ul ul::before {
+		content: none;
+	}
+
+	#navigation ul ul::after {
+		content: none;
+	}
+
+	#navigation ul ul li {
+		display: block;
+		margin-left: 0;
+	}
 }
 
 #main {
@@ -160,7 +204,6 @@ body {
 	-moz-tab-size: 4;
 	     tab-size: 4;
 	word-break: break-all;
-	/*word-wrap: hyphenate; /* TODO: Correct? Implemented? */
 	white-space: pre-wrap;
 }
 
@@ -202,48 +245,4 @@ body {
 	right: 0.6em;
 	text-transform: uppercase;
 	top: 0.6em;
-}
-
-@media (max-width: 40em) {
-	body {
-		padding-left: 0;
-	}
-
-	#header {
-		position: static;
-	}
-
-	#title {
-		padding-left: 1.3em;
-	}
-
-	#navigation ul {
-		margin-left: 2.7em;
-	}
-
-	#navigation > ul > li > a {
-		display: inline-block;
-		margin-right: 0.5em;
-	}
-
-	#navigation ul ul {
-		display: inline;
-		margin-left: 0;
-	}
-
-	#navigation ul ul::before {
-		color: #666;
-		content: "[";
-	}
-
-	#navigation ul ul::after {
-		color: #666;
-		content: "]";
-		margin-left: 0.4em;
-	}
-
-	#navigation ul ul li {
-		display: inline-block;
-		margin-left: 0.4em;
-	}
 }
