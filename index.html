@@ -24,6 +24,13 @@
 							<li><a href="#attributes">Attributes</a></li>
 							<li><a href="#classes">Classes</a></li>
 							<li><a href="#hierarchy">Hierarchy</a></li>
+							<li>
+								<a href="#special-blocks">Special blocks</a>
+
+								<ul>
+									<li><a href="#if-block"><code>if</code></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 					<li>
@@ -140,6 +147,23 @@ html
 				<pre class="output"><samp>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Example Page&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p id="welcome"&gt;Hello, &lt;em&gt;world&lt;/em&gt;!&lt;/p&gt;&lt;a href="http://example.com/"&gt;Visit a most exciting destination&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</samp></pre>
 			</div>
 
+			<h3 id="special-blocks">Special blocks</h3>
+
+			<h4 id="if-block"><code>if</code></h4>
+
+			<p>An <code>if</code> block takes a Haskell expression as a condition and includes its content if the condition is <code>True</code>. An <code>else</code> block may immediately succeed it.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>p
+	"#{n} cact"
+	if n == 1
+		"us"
+	else
+		data-plural:
+		"i"</code></pre>
+				<pre class="output"><samp>&lt;p data-plural&gt;5 cacti&lt;/p&gt;</samp></pre>
+			</div>
+
 			<h2 id="api">API</h2>
 
 			<h3 id="flamethrower-quasiquoter"><code>Flamethrower.flamethrower :: QuasiQuoter</code></h3>
@@ -155,6 +179,10 @@ html
 			<pre data-language="Haskell"><code>hello name = [flamef|hello.flame|]</code></pre>
 
 			<h2 id="changelog">Changelog</h2>
+
+			<h3>0.0.2.1</h3>
+
+			<p>Added <code>doctype</code> and <code>if</code>/<code>else</code> special blocks; changed templates to generate <code>Data.Text</code> text.</p>
 
 			<h3>0.0.1.3</h3>
 

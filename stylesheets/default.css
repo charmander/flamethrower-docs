@@ -121,7 +121,6 @@ body {
 
 #navigation a {
 	color: #057;
-	display: block;
 	line-height: 1.6;
 	text-decoration: none;
 }
@@ -169,6 +168,10 @@ body {
 	#navigation ul ul li {
 		display: block;
 		margin-left: 0;
+	}
+
+	#navigation a {
+		display: block;
 	}
 }
 
