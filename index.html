@@ -29,6 +29,7 @@
 
 								<ul>
 									<li><a href="#if-block"><code>if</code></li>
+									<li><a href="#for-block"><code>for</code></li>
 								</ul>
 							</li>
 						</ul>
@@ -164,6 +165,19 @@ html
 				<pre class="output"><samp>&lt;p data-plural&gt;5 cacti&lt;/p&gt;</samp></pre>
 			</div>
 
+			<h4 id="for-block"><code>for</code></h4>
+
+			<p>A <code>for</code> block takes a Haskell variable name and a list expression and includes its content for each item in the list.</p>
+
+			<p>Unlike an <code>if</code> block, it doesn’t make sense for it to contain attributes or classes.</p>
+
+			<div class="code-sample">
+				<pre data-language="Flamethrower"><code>ul
+	for item in ["one", "two", "three"]
+		li "#{item}"</code></pre>
+				<pre class="output"><samp>&lt;ul&gt;&lt;li&gt;one&lt;/li&gt;&lt;li&gt;two&lt;/li&gt;&lt;li&gt;three&lt;/li&gt;&lt;/ul&gt;</samp></pre>
+			</div>
+
 			<h2 id="api">API</h2>
 
 			<h3 id="flamethrower-quasiquoter"><code>Flamethrower.flamethrower :: QuasiQuoter</code></h3>
@@ -179,6 +193,10 @@ html
 			<pre data-language="Haskell"><code>hello name = [flamef|hello.flame|]</code></pre>
 
 			<h2 id="changelog">Changelog</h2>
+
+			<h3>0.0.3.0</h3>
+
+			<p>Added <code>for</code> loops.</p>
 
 			<h3>0.0.2.1</h3>
 
